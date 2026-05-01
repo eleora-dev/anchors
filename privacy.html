@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eleòra Anchors — Privacy Policy</title>
+
+  <style>
+    :root {
+      --orange: #ffa726;
+      --text: #1a1a1a;
+      --muted: #666;
+      --border: #e8e8e8;
+      --bg: #fff;
+      --card: #fafafa;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text: #eee;
+        --muted: #999;
+        --border: #333;
+        --bg: #1e1e1e;
+        --card: #252525;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      padding: 0 16px 64px;
+    }
+
+    header {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 48px 0 32px;
+      border-bottom: 2px solid var(--orange);
+      margin-bottom: 40px;
+    }
+
+    /* ===== LOGO ===== */
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .brand-logo {
+      height: 42px;
+      display: block;
+    }
+
+    .brand-clic {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 2px;
+      transform: translateY(3px);
+      margin-left: 8px;
+    }
+
+    /* ===== TEXT ===== */
+
+    .meta {
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .lang-tag {
+      display: inline-block;
+      font-family: system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--orange);
+      border: 1px solid var(--orange);
+      border-radius: 4px;
+      padding: 2px 7px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    a {
+      color: var(--orange);
+    }
+
+    /* ===== CARD ===== */
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card ul li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 10px;
+    }
+
+    .card ul li:last-child {
+      border-bottom: none;
+    }
+
+    .card ul li::before {
+      content: "→";
+      color: var(--orange);
+    }
+
+    .permission-name {
+      font-weight: 600;
+      min-width: 110px;
+    }
+
+    .permission-reason {
+      color: var(--muted);
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    footer {
+      max-width: 680px;
+      margin: 0 auto;
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="assets/eleora-logo-inline.png" alt="Eleòra" class="brand-logo">
+    <span class="brand-clic">Anchors</span>
+  </div>
+
+  <p class="meta">Privacy Policy · Last updated: 2026</p>
+</header>
+
+<main>
+
+  <!-- ENGLISH -->
+  <section>
+    <div class="lang-tag">English</div>
+    <h2>Privacy Policy</h2>
+
+    <p>Eleòra Anchors is a Chrome extension that provides quick access to bookmarks, clean page reload, cache clearing, sanitized URL copy, and incognito navigation.</p>
+
+    <p><strong>This extension does not collect, store, transmit, or share any personal data.</strong> All operations are performed locally within your browser. No data ever leaves your device.</p>
+
+    <p>The following permissions are required:</p>
+
+    <div class="card">
+      <ul>
+        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Read bookmarks.</span></li>
+        <li><span class="permission-name">tabs</span><span class="permission-reason">Read current tab.</span></li>
+        <li><span class="permission-name">browsingData</span><span class="permission-reason">Clear cache.</span></li>
+        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copy URL.</span></li>
+        <li><span class="permission-name">favicon</span><span class="permission-reason">Show icons.</span></li>
+      </ul>
+    </div>
+
+    <p style="margin-top:16px;">
+      No analytics, no tracking, no external servers.
+      Source code available on
+      <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ITALIANO -->
+  <section>
+    <div class="lang-tag">Italiano</div>
+    <h2>Informativa sulla Privacy</h2>
+
+    <p>Eleòra Anchors è un'estensione per Chrome che fornisce accesso rapido ai preferiti, ricarica pulita della pagina, pulizia della cache, copia dell'URL senza parametri di tracking e navigazione in incognito.</p>
+
+    <p><strong>Questa estensione non raccoglie, salva, trasmette o condivide alcun dato personale.</strong> Tutte le operazioni vengono eseguite localmente nel browser. Nessun dato lascia il dispositivo dell'utente.</p>
+
+    <p>I seguenti permessi sono necessari:</p>
+
+    <div class="card">
+      <ul>
+        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Leggere i preferiti.</span></li>
+        <li><span class="permission-name">tabs</span><span class="permission-reason">Leggere la scheda corrente.</span></li>
+        <li><span class="permission-name">browsingData</span><span class="permission-reason">Pulire la cache.</span></li>
+        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copiare URL.</span></li>
+        <li><span class="permission-name">favicon</span><span class="permission-reason">Mostrare icone.</span></li>
+      </ul>
+    </div>
+
+    <p style="margin-top:16px;">
+      Nessuna analisi, nessun tracciamento, nessun server esterno.
+      Codice disponibile su
+      <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  <p>Eleòra Anchors · Gerardo Perilli ·
+    <a href="mailto:gerardo.perilli@gmail.it">email</a> ·
+    <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>

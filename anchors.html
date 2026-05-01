@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="anchors.css" />
+</head>
+
+<body>
+  <div id="container">
+    <div id="nav">
+      <div id="nav-left">
+        <span id="root-dot">•</span>
+
+        <div id="title-block">
+          <span id="path">Preferiti</span>
+          <span id="subtitle"></span>
+        </div>
+      </div>
+
+      <div id="nav-right">
+        <button id="copy-url" class="icon-button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 1 0-7l2-2a5 5 0 0 1 7 7l-1 1"></path>
+            <path d="M14 11a5 5 0 0 1 0 7l-2 2a5 5 0 0 1-7-7l1-1"></path>
+          </svg>
+        </button>
+
+        <button id="clean-refresh" class="icon-button">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 4v6h6"/>
+            <path d="M20 20v-6h-6"/>
+            <path d="M20 9a8 8 0 0 0-14-3"/>
+            <path d="M4 15a8 8 0 0 0 14 3"/>
+          </svg>
+        </button>
+
+        <button id="clear-cache" class="icon-button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 6h18" />
+            <path d="M8 6V4h8v2" />
+            <path d="M6 6l1 14h10l1-14" />
+            <path d="M10 11v6" />
+            <path d="M14 11v6" />
+          </svg>
+        </button>
+
+        <button id="incognito" class="icon-button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 10h16" />
+            <path d="M7 10l1.5-4h7L17 10" />
+            <circle cx="8" cy="14" r="3" />
+            <circle cx="16" cy="14" r="3" />
+            <path d="M11 14h2" />
+          </svg>
+        </button>
+
+        <button id="bookmarks" class="icon-button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3h12v18l-6-4-6 4z"></path>
+          </svg>
+        </button>
+
+        <button id="settings" class="icon-button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.8 1.8 0 0 0 .3 2l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.8 1.8 0 0 0-2-.3 1.8 1.8 0 0 0-1.1 1.6V22a2 2 0 1 1-4 0v-.1a1.8 1.8 0 0 0-1.1-1.6 1.8 1.8 0 0 0-2 .3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.8 1.8 0 0 0 .3-2 1.8 1.8 0 0 0-1.6-1.1H2a2 2 0 1 1 0-4h.1a1.8 1.8 0 0 0 1.6-1.1 1.8 1.8 0 0 0-.3-2l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.8 1.8 0 0 0 2 .3h.1a1.8 1.8 0 0 0 1.1-1.6V2a2 2 0 1 1 4 0v.1a1.8 1.8 0 0 0 1.1 1.6h.1a1.8 1.8 0 0 0 2-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.8 1.8 0 0 0-.3 2v.1a1.8 1.8 0 0 0 1.6 1.1H22a2 2 0 1 1 0 4h-.1a1.8 1.8 0 0 0-1.6 1.1z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="list"></div>
+
+    <div id="footer"></div>
+  </div>
+
+  <script src="trackers.js"></script>
+  <script src="anchors.js"></script>
+</body>
+</html>

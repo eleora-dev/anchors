@@ -1,0 +1,367 @@
+/* ============================================================================
+ *  Eleòra Anchors — Stylesheet
+ *  https://github.com/eleora-dev/anchors
+ *  License: MIT
+ *  ============================================================================ */
+
+
+/* ── Color variables ──────────────────────────────────────────────────────── */
+
+:root {
+    /* Base */
+    --bg:                  #ffffff;
+    --text:                #222222;
+    --text-muted:          #eeeeee;     /* used in dark mode for list items */
+
+    /* Navbar */
+    --nav-bg:              #f5f5f5;
+    --nav-border:          #e8e8e8;
+
+    /* Accent (hover / selected) */
+    --accent:              #ffa726;
+    --accent-text:         #ffffff;
+    --accent-shadow:       rgba(0, 0, 0, 0.25);
+
+    /* Icon buttons */
+    --btn-color:           #222222;
+    --btn-hover-bg:        #eeeeee;
+
+    /* Folder open (not selected) */
+    --folder-open-bg:      #fff3e0;
+    --folder-open-text:    inherit;
+
+    /* Footer */
+    --footer-bg:           #1565d8;
+    --footer-text:         #ffffff;
+    --footer-link-hover-bg: rgba(255, 255, 255, 0.15);
+    --footer-divider:      rgba(255, 255, 255, 0.35);
+
+    /* Context menu */
+    --ctx-bg:              #ffffff;
+    --ctx-border:          #e0e0e0;
+    --ctx-shadow:          rgba(0, 0, 0, 0.18);
+    --ctx-text:            #222222;
+    --ctx-separator:       #e8e8e8;
+
+    /* Shadows */
+    --container-shadow:    rgba(0, 0, 0, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Base */
+        --bg:                  #1e1e1e;
+        --text:                #eeeeee;
+
+        /* Navbar */
+        --nav-bg:              #252525;
+        --nav-border:          #333333;
+
+        /* Icon buttons */
+        --btn-color:           #bbbbbb;
+        --btn-hover-bg:        #333333;
+
+        /* Folder open (not selected) */
+        --folder-open-bg:      #332514;
+        --folder-open-text:    #eeeeee;
+
+        /* Context menu */
+        --ctx-bg:              #252525;
+        --ctx-border:          #383838;
+        --ctx-shadow:          rgba(0, 0, 0, 0.50);
+        --ctx-text:            #eeeeee;
+        --ctx-separator:       #383838;
+
+        /* Shadows */
+        --container-shadow:    rgba(0, 0, 0, 0.50);
+
+        /* Footer and accent are identical in both modes — no override needed */
+    }
+}
+
+
+/* ── Reset & base ─────────────────────────────────────────────────────────── */
+
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    width: 360px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+
+/* ── Main container ───────────────────────────────────────────────────────── */
+
+#container {
+    background: inherit;
+    box-shadow: 0 4px 12px var(--container-shadow);
+    overflow: hidden;
+    animation: popup-enter 750ms ease-out;
+    transform-origin: top center;
+}
+
+@keyframes popup-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ── Navbar ───────────────────────────────────────────────────────────────── */
+
+#nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 10px;
+    background: var(--nav-bg);
+    margin-bottom: 2px;
+    border-bottom: 1px solid var(--nav-border);
+}
+
+#nav-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
+}
+
+#nav-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 0 0 auto;
+}
+
+#title-block {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+#root-dot {
+    font-size: 18px;
+    line-height: 1;
+    margin-top: 2px;
+    color: var(--accent);
+}
+
+#path {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#subtitle {
+    font-size: 12px;
+    line-height: 1.2;
+    opacity: 0.5;
+}
+
+
+/* ── Icon buttons (navbar) ────────────────────────────────────────────────── */
+
+.icon-button {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--btn-color);
+    opacity: 0.85;
+    cursor: pointer;
+    padding: 0;
+    transition: color 150ms ease, background 150ms ease, opacity 150ms ease;
+}
+
+.icon-button:hover {
+    background: var(--btn-hover-bg);
+    color: var(--accent);
+    opacity: 1;
+}
+
+.icon-button:active {
+    transform: scale(0.9);
+}
+
+.icon-button svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* ── Bookmark list ────────────────────────────────────────────────────────── */
+
+.item {
+    display: flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 7px 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    user-select: none;
+    animation: item-enter 750ms ease-out;
+}
+
+.item:hover,
+.item.selected,
+.folder.open.selected {
+    background: var(--accent);
+    color: var(--accent-text);
+    text-shadow: 0 1px 1px var(--accent-shadow);
+}
+
+@keyframes item-enter {
+    from {
+        opacity: 0;
+        transform: translateY(-2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    flex: 0 0 auto;
+}
+
+.title {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.folder-arrow {
+    width: 14px;
+    margin-right: 4px;
+    font-size: 12px;
+    opacity: 0.75;
+    flex: 0 0 auto;
+}
+
+.folder-icon {
+    width: 18px;
+    margin-right: 10px;
+    font-size: 15px;
+    flex: 0 0 auto;
+}
+
+.folder .title {
+    font-weight: 500;
+}
+
+.folder.open {
+    background: var(--folder-open-bg);
+    color: var(--folder-open-text);
+}
+
+
+/* ── Footer ───────────────────────────────────────────────────────────────── */
+
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 10px;
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    margin-top: 2px;
+}
+
+#footer a {
+    color: var(--footer-text);
+    text-decoration: none;
+    opacity: 0.9;
+    border-radius: 4px;
+    padding: 1px 6px;
+    transition: background 150ms ease, opacity 150ms ease;
+}
+
+#footer a:hover {
+    opacity: 1;
+    background: var(--footer-link-hover-bg);
+}
+
+#footer a + a {
+    border-left: 1px solid var(--footer-divider);
+}
+
+
+/* ── Context menu ─────────────────────────────────────────────────────────── */
+
+#ctx-menu {
+    position: fixed;
+    background: var(--ctx-bg);
+    border: 1px solid var(--ctx-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px var(--ctx-shadow);
+    z-index: 1000;
+    min-width: 210px;
+    padding: 4px 0;
+    animation: ctx-enter 300ms ease-out;
+}
+
+@keyframes ctx-enter {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ctx-item {
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    white-space: nowrap;
+    color: var(--ctx-text);
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.ctx-item:hover {
+    background: var(--accent);
+    color: var(--accent-text);
+}
+
+.ctx-separator {
+    height: 1px;
+    background: var(--ctx-separator);
+    margin: 4px 0;
+}
+
+.ctx-shortcut {
+    font-size: 12px;
+    opacity: 0.45;
+    flex-shrink: 0;
+}
