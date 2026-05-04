@@ -47,8 +47,6 @@
       margin-bottom: 40px;
     }
 
-    /* ===== LOGO ===== */
-
     .logo {
       display: flex;
       align-items: center;
@@ -70,8 +68,6 @@
       transform: translateY(3px);
       margin-left: 8px;
     }
-
-    /* ===== TEXT ===== */
 
     .meta {
       font-family: system-ui, sans-serif;
@@ -118,8 +114,6 @@
       color: var(--orange);
     }
 
-    /* ===== CARD ===== */
-
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -127,6 +121,7 @@
       border-radius: 6px;
       padding: 16px 20px;
       margin-top: 16px;
+      margin-bottom: 16px;
       font-family: system-ui, sans-serif;
       font-size: 14px;
     }
@@ -149,6 +144,7 @@
     .card ul li::before {
       content: "→";
       color: var(--orange);
+      flex: 0 0 auto;
     }
 
     .permission-name {
@@ -186,7 +182,7 @@
     <span class="brand-clic">Anchors</span>
   </div>
 
-  <p class="meta">Privacy Policy · Last updated: 2026</p>
+  <p class="meta">Privacy Policy · Last updated: May 2026</p>
 </header>
 
 <main>
@@ -196,65 +192,107 @@
     <div class="lang-tag">English</div>
     <h2>Privacy Policy</h2>
 
-    <p>Eleòra Anchors is a Chrome extension that provides quick access to bookmarks, clean page reload, cache clearing, sanitized URL copy, and incognito navigation.</p>
+    <p>Eleòra Anchors is a Chromium-based browser extension that provides quick access to bookmarks, clean page reload, cache clearing, sanitized URL copy, and incognito/private navigation.</p>
 
-    <p><strong>This extension does not collect, store, transmit, or share any personal data.</strong> All operations are performed locally within your browser. No data ever leaves your device.</p>
+    <p><strong>This extension does not collect, store, transmit, sell, or share any personal data.</strong> All operations are performed locally within your browser. No user data ever leaves your device.</p>
+
+    <p>The extension does not store or persist any user data, including:</p>
+
+    <div class="card">
+      <ul>
+        <li>Bookmarks data</li>
+        <li>Visited URLs</li>
+        <li>Clipboard contents</li>
+        <li>Browsing history</li>
+        <li>Cache or local site data</li>
+      </ul>
+    </div>
+
+    <p><strong>Data handling:</strong></p>
+
+    <div class="card">
+      <ul>
+        <li>Bookmarks are accessed only to display them in the popup.</li>
+        <li>The current tab URL is accessed only when the user copies a sanitized URL or performs a clean reload.</li>
+        <li>Browsing data is accessed only when the user explicitly clicks a cleaning action.</li>
+        <li>Clipboard access is used only to copy the sanitized URL requested by the user.</li>
+        <li>All operations are performed in memory and discarded immediately after use.</li>
+      </ul>
+    </div>
 
     <p>The following permissions are required:</p>
 
     <div class="card">
       <ul>
-        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Read bookmarks.</span></li>
-        <li><span class="permission-name">tabs</span><span class="permission-reason">Read current tab.</span></li>
-        <li><span class="permission-name">browsingData</span><span class="permission-reason">Clear cache.</span></li>
-        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copy URL.</span></li>
-        <li><span class="permission-name">favicon</span><span class="permission-reason">Show icons.</span></li>
+        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Read and display bookmarks in the popup.</span></li>
+        <li><span class="permission-name">tabs</span><span class="permission-reason">Read the current tab URL when needed.</span></li>
+        <li><span class="permission-name">windows</span><span class="permission-reason">Open and manage browser windows, including incognito/private windows.</span></li>
+        <li><span class="permission-name">browsingData</span><span class="permission-reason">Clear cache and selected browsing data when requested by the user.</span></li>
+        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copy sanitized URLs to the clipboard.</span></li>
+        <li><span class="permission-name">favicon</span><span class="permission-reason">Show site icons next to bookmarks.</span></li>
       </ul>
     </div>
 
-    <p style="margin-top:16px;">
-      No analytics, no tracking, no external servers.
-      Source code available on
-      <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>.
-    </p>
+    <p>No analytics. No tracking. No external services or network requests.</p>
   </section>
 
   <hr class="divider" />
 
-  <!-- ITALIANO -->
+  <!-- ITALIAN -->
   <section>
     <div class="lang-tag">Italiano</div>
     <h2>Informativa sulla Privacy</h2>
 
-    <p>Eleòra Anchors è un'estensione per Chrome che fornisce accesso rapido ai preferiti, ricarica pulita della pagina, pulizia della cache, copia dell'URL senza parametri di tracking e navigazione in incognito.</p>
+    <p>Eleòra Anchors è un'estensione per browser basati su Chromium che fornisce accesso rapido ai preferiti, ricarica pulita della pagina, pulizia della cache, copia dell'URL senza parametri di tracking e navigazione in incognito/privata.</p>
 
-    <p><strong>Questa estensione non raccoglie, salva, trasmette o condivide alcun dato personale.</strong> Tutte le operazioni vengono eseguite localmente nel browser. Nessun dato lascia il dispositivo dell'utente.</p>
+    <p><strong>Questa estensione non raccoglie, salva, trasmette, vende o condivide alcun dato personale.</strong> Tutte le operazioni vengono eseguite localmente nel browser. Nessun dato dell'utente lascia il dispositivo.</p>
+
+    <p>L'estensione non salva né conserva alcun dato dell'utente, inclusi:</p>
+
+    <div class="card">
+      <ul>
+        <li>Dati dei preferiti</li>
+        <li>URL visitati</li>
+        <li>Contenuto degli appunti</li>
+        <li>Cronologia di navigazione</li>
+        <li>Cache o dati locali dei siti</li>
+      </ul>
+    </div>
+
+    <p><strong>Gestione dei dati:</strong></p>
+
+    <div class="card">
+      <ul>
+        <li>I preferiti vengono letti solo per mostrarli nel popup.</li>
+        <li>L'URL della scheda corrente viene letto solo quando l'utente copia un URL pulito o esegue una ricarica pulita.</li>
+        <li>I dati di navigazione vengono accessi solo quando l'utente clicca esplicitamente un'azione di pulizia.</li>
+        <li>L'accesso agli appunti viene usato solo per copiare l'URL pulito richiesto dall'utente.</li>
+        <li>Tutte le operazioni vengono eseguite in memoria e scartate immediatamente dopo l'uso.</li>
+      </ul>
+    </div>
 
     <p>I seguenti permessi sono necessari:</p>
 
     <div class="card">
       <ul>
-        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Leggere i preferiti.</span></li>
-        <li><span class="permission-name">tabs</span><span class="permission-reason">Leggere la scheda corrente.</span></li>
-        <li><span class="permission-name">browsingData</span><span class="permission-reason">Pulire la cache.</span></li>
-        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copiare URL.</span></li>
-        <li><span class="permission-name">favicon</span><span class="permission-reason">Mostrare icone.</span></li>
+        <li><span class="permission-name">bookmarks</span><span class="permission-reason">Leggere e mostrare i preferiti nel popup.</span></li>
+        <li><span class="permission-name">tabs</span><span class="permission-reason">Leggere l'URL della scheda corrente quando necessario.</span></li>
+        <li><span class="permission-name">windows</span><span class="permission-reason">Aprire e gestire finestre del browser, incluse finestre in incognito/private.</span></li>
+        <li><span class="permission-name">browsingData</span><span class="permission-reason">Pulire cache e dati di navigazione selezionati quando richiesto dall'utente.</span></li>
+        <li><span class="permission-name">clipboardWrite</span><span class="permission-reason">Copiare URL puliti negli appunti.</span></li>
+        <li><span class="permission-name">favicon</span><span class="permission-reason">Mostrare le icone dei siti accanto ai preferiti.</span></li>
       </ul>
     </div>
 
-    <p style="margin-top:16px;">
-      Nessuna analisi, nessun tracciamento, nessun server esterno.
-      Codice disponibile su
-      <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>.
-    </p>
+    <p>Nessuna analisi. Nessun tracciamento. Nessun servizio esterno né comunicazione di rete.</p>
   </section>
 
 </main>
 
 <footer>
   <p>Eleòra Anchors · Gerardo Perilli ·
-    <a href="mailto:gerardo.perilli@gmail.it">email</a> ·
-    <a href="https://github.com/eleora-dev/anchors" target="_blank">GitHub</a>
+    <a href="mailto:gerardo.perilli@gmail.com">email</a> ·
+    <a href="https://github.com/eleora-dev/anchors" target="_blank" rel="noopener noreferrer">GitHub</a>
   </p>
 </footer>
 

@@ -4,7 +4,8 @@
   "version": "1.0",
   "description": "__MSG_description__",
   "default_locale": "en",
-  "permissions": ["bookmarks", "favicon", "tabs", "browsingData", "clipboardWrite"],
+  "permissions": ["bookmarks", "favicon", "tabs", "windows", "browsingData", "clipboardWrite"],
+  "host_permissions": [],
   "author": "Gerardo Perilli",
   "action": {
     "default_popup": "anchors.html",

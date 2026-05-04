@@ -4,6 +4,8 @@
  *  License: MIT
  *
  *  Add or remove entries here to keep the list up to date.
+ *  - TRACKING_PARAMS: exact match
+ *  - TRACKING_PREFIXES: prefix match via startsWith
  *  All comparisons in anchors.js are case-insensitive (lowercased at runtime).
  *  ============================================================================ */
 
@@ -52,7 +54,7 @@ const TRACKING_PARAMS = new Set([
     "__hssc",
     "__hstc",
     "__hsfp",
-    "hsctaTracking",
+    "hsctatracking",
 
     // ── Marketo ───────────────────────────────────────────────────────────────
     "mkt_tok",
@@ -76,7 +78,6 @@ const TRACKING_PARAMS = new Set([
 
     // ── Amazon (affiliation) ──────────────────────────────────────────────────
     "tag",
-    "ref_",
 
     // ── Yandex ────────────────────────────────────────────────────────────────
     "yclid",
@@ -100,8 +101,16 @@ const TRACKING_PARAMS = new Set([
 
     // ── Generic click IDs ─────────────────────────────────────────────────────
     "eid",
+    // "cid" intentionally excluded: too generic, may break legitimate URLs.
     "cmpid",
-    "cid",
     "trk",
-    "trkCampaign",
+    "trkcampaign",
 ]);
+
+
+/* ── Tracking parameter prefixes (match via startsWith) ─────────────────── */
+
+const TRACKING_PREFIXES = [
+    // Amazon
+    "ref_",
+];
