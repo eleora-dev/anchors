@@ -9,70 +9,70 @@
 
 :root {
     /* Base */
-    --bg:                  #ffffff;
-    --text:                #222222;
+    --bg: #ffffff;
+    --text: #222222;
 
     /* Navbar */
-    --nav-bg:              #f5f5f5;
-    --nav-border:          #e8e8e8;
+    --nav-bg: #f5f5f5;
+    --nav-border: #e8e8e8;
 
     /* Accent (hover / selected) */
-    --accent:              #ffa726;
-    --accent-text:         #ffffff;
-    --accent-shadow:       rgba(0, 0, 0, 0.25);
+    --accent: #ffa726;
+    --accent-text: #ffffff;
+    --accent-shadow: rgba(0, 0, 0, 0.25);
 
     /* Icon buttons */
-    --btn-color:           #222222;
-    --btn-hover-bg:        #eeeeee;
+    --btn-color: #222222;
+    --btn-hover-bg: #eeeeee;
 
     /* Alternate surface */
-    --bg-alt:               #fff3e0;
-    --text-alt:             inherit;
+    --bg-alt: #fff3e0;
+    --text-alt: inherit;
 
     /* Footer */
-    --footer-bg:           #1565d8;
-    --footer-text:         #ffffff;
+    --footer-bg: #1565d8;
+    --footer-text: #ffffff;
     --footer-link-hover-bg: rgba(255, 255, 255, 0.15);
-    --footer-divider:      rgba(255, 255, 255, 0.35);
+    --footer-divider: rgba(255, 255, 255, 0.35);
 
     /* Context menu */
-    --ctx-bg:              #ffffff;
-    --ctx-border:          #e0e0e0;
-    --ctx-shadow:          rgba(0, 0, 0, 0.18);
-    --ctx-text:            #222222;
-    --ctx-separator:       #e8e8e8;
+    --ctx-bg: #ffffff;
+    --ctx-border: #e0e0e0;
+    --ctx-shadow: rgba(0, 0, 0, 0.18);
+    --ctx-text: #222222;
+    --ctx-separator: #e8e8e8;
 
     /* Shadows */
-    --container-shadow:    rgba(0, 0, 0, 0.15);
+    --container-shadow: rgba(0, 0, 0, 0.15);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         /* Base */
-        --bg:                  #1e1e1e;
-        --text:                #eeeeee;
+        --bg: #1e1e1e;
+        --text: #eeeeee;
 
         /* Navbar */
-        --nav-bg:              #252525;
-        --nav-border:          #333333;
+        --nav-bg: #252525;
+        --nav-border: #333333;
 
         /* Icon buttons */
-        --btn-color:           #bbbbbb;
-        --btn-hover-bg:        #333333;
+        --btn-color: #bbbbbb;
+        --btn-hover-bg: #333333;
 
         /* Alternate surface */
-        --bg-alt:               #332514;
-        --text-alt:             #eeeeee;
+        --bg-alt: #332514;
+        --text-alt: #eeeeee;
 
         /* Context menu */
-        --ctx-bg:              #252525;
-        --ctx-border:          #383838;
-        --ctx-shadow:          rgba(0, 0, 0, 0.50);
-        --ctx-text:            #eeeeee;
-        --ctx-separator:       #383838;
+        --ctx-bg: #252525;
+        --ctx-border: #383838;
+        --ctx-shadow: rgba(0, 0, 0, 0.50);
+        --ctx-text: #eeeeee;
+        --ctx-separator: #383838;
 
         /* Shadows */
-        --container-shadow:    rgba(0, 0, 0, 0.50);
+        --container-shadow: rgba(0, 0, 0, 0.50);
 
         /* Footer and accent are identical in both modes — no override needed */
     }

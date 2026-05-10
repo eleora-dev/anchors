@@ -21,7 +21,7 @@
  */
 function detectBrowser() {
     const ua = navigator.userAgent;
-    if (ua.includes("Edg/"))     return "edge";
+    if (ua.includes("Edg/")) return "edge";
     if (ua.includes("Firefox/")) return "firefox";
     return "chrome";
 }
@@ -37,7 +37,7 @@ const BROWSER = detectBrowser();
  *
  * @type {typeof chrome}
  */
-const api = (typeof browser !== "undefined") ? browser : chrome;  // eslint-disable-line no-undef
+const api = (typeof browser !== "undefined") ? browser : chrome; // eslint-disable-line no-undef
 
 
 /* ── Browser-specific internal URLs ──────────────────────────────────────── */
@@ -47,13 +47,13 @@ const api = (typeof browser !== "undefined") ? browser : chrome;  // eslint-disa
  * Centralised here so button handlers never hard-code a browser name.
  */
 const INTERNAL_URLS = {
-    bookmarks: BROWSER === "edge"    ? "edge://favorites/"
+    bookmarks: BROWSER === "edge" ? "edge://favorites/"
     : BROWSER === "firefox" ? "about:bookmarks"
-    :                         "chrome://bookmarks/",
+    : "chrome://bookmarks/",
 
-    settings:  BROWSER === "edge"    ? "edge://settings/"
+    settings: BROWSER === "edge" ? "edge://settings/"
     : BROWSER === "firefox" ? "about:preferences"
-    :                         "chrome://settings/",
+    : "chrome://settings/",
 };
 
 
@@ -66,73 +66,73 @@ document.documentElement.lang = lang;
 const i18n = {
     en: {
         // Navbar tooltips
-        logoLink:           "Eleòra on GitHub",
-        copyUrl:            "Copy a clean version of the current page URL to clipboard (tracking parameters are stripped)",
-        cleanRefresh:       "Clear site cache and reload the page",
-        clearCache:         "Clear cache, history, downloads and local data (no cookies) for all sites",
-        incognito:          "Open a new incognito window",
-        incognitoEdge:      "Open a new InPrivate window",
-        bookmarks:          "Open bookmarks manager",
-        settings:           "Open browser settings",
+        logoLink: "Eleòra on GitHub",
+        copyUrl: "Copy a clean version of the current page URL to clipboard (tracking parameters are stripped)",
+        cleanRefresh: "Clear site cache and reload the page",
+        clearCache: "Clear cache, history, downloads and local data (no cookies) for all sites",
+        incognito: "Open a new incognito window",
+        incognitoEdge: "Open a new InPrivate window",
+        bookmarks: "Open bookmarks manager",
+        settings: "Open browser settings",
         // Accessibility (aria-labels)
-        ariaCopy:           "Copy clean URL",
-        ariaRefresh:        "Clean reload",
-        ariaClear:          "Clear browsing data",
-        ariaIncognito:      "Open incognito window",
-        ariaIncognitoEdge:  "Open InPrivate window",
-        ariaBookmarks:      "Open bookmarks",
-        ariaSettings:       "Open settings",
+        ariaCopy: "Copy clean URL",
+        ariaRefresh: "Clean reload",
+        ariaClear: "Clear browsing data",
+        ariaIncognito: "Open incognito window",
+        ariaIncognitoEdge: "Open InPrivate window",
+        ariaBookmarks: "Open bookmarks",
+        ariaSettings: "Open settings",
         // Alert banner
-        privateBanner:      "⚠ Extension not enabled in incognito mode — click to enable",
-        privateBannerEdge:  "⚠ Extension not enabled in InPrivate mode — click to enable",
+        privateBanner: "⚠ Extension not enabled in incognito mode — click to enable",
+        privateBannerEdge: "⚠ Extension not enabled in InPrivate mode — click to enable",
         // Footer
         footer: "<a href='https://eleora-dev.github.io/anchors/privacy.html' target='_blank' rel='noopener noreferrer' title='Privacy policy'>Privacy</a><a href='https://github.com/eleora-dev/anchors/blob/main/LICENSE' target='_blank' rel='noopener noreferrer' title='MIT License'>License</a><a href='https://github.com/eleora-dev/anchors/issues' target='_blank' rel='noopener noreferrer' title='Report an issue on GitHub'>Report issue</a>",
         // Misc
-        by:                 "by",
-        folder:             "Folder",         // fallback for unnamed folders
+        by: "by",
+        folder: "Folder", // fallback for unnamed folders
         // Context menu
-        ctxOpen:            "Open",
-        ctxNewTab:          "Open in new tab",
-        ctxNewTabHint:      "Ctrl+Click",     // shortcut shown on the right
-        ctxNewWindow:       "Open in new window",
-        ctxIncognito:       "Open in private window",
-        ctxIncognitoEdge:   "Open in InPrivate window",
-        ctxCopyUrl:         "Copy URL",
+        ctxOpen: "Open",
+        ctxNewTab: "Open in new tab",
+        ctxNewTabHint: "Ctrl+Click", // shortcut shown on the right
+        ctxNewWindow: "Open in new window",
+        ctxIncognito: "Open in private window",
+        ctxIncognitoEdge: "Open in InPrivate window",
+        ctxCopyUrl: "Copy URL",
     },
     it: {
         // Navbar tooltips
-        logoLink:           "Eleòra su GitHub",
-        copyUrl:            "Copia una versione pulita dell'URL della pagina corrente negli appunti (eventuali parametri di tracking vengono rimossi)",
-        cleanRefresh:       "Pulisci la cache del sito e ricarica la pagina",
-        clearCache:         "Elimina cache, cronologia, download e dati locali (cookie esclusi) per tutti i siti",
-        incognito:          "Apri una nuova finestra in incognito",
-        incognitoEdge:      "Apri una nuova finestra InPrivate",
-        bookmarks:          "Accedi alla gestione dei preferiti",
-        settings:           "Apri le impostazioni del browser",
+        logoLink: "Eleòra su GitHub",
+        copyUrl: "Copia una versione pulita dell'URL della pagina corrente negli appunti (eventuali parametri di tracking vengono rimossi)",
+        cleanRefresh: "Pulisci la cache del sito e ricarica la pagina",
+        clearCache: "Elimina cache, cronologia, download e dati locali (cookie esclusi) per tutti i siti",
+        incognito: "Apri una nuova finestra in incognito",
+        incognitoEdge: "Apri una nuova finestra InPrivate",
+        bookmarks: "Accedi alla gestione dei preferiti",
+        settings: "Apri le impostazioni del browser",
         // Accessibility (aria-labels)
-        ariaCopy:           "Copia URL pulito",
-        ariaRefresh:        "Ricarica pulita",
-        ariaClear:          "Cancella dati di navigazione",
-        ariaIncognito:      "Apri finestra in incognito",
-        ariaIncognitoEdge:  "Apri finestra InPrivate",
-        ariaBookmarks:      "Apri preferiti",
-        ariaSettings:       "Apri impostazioni",
+        ariaCopy: "Copia URL pulito",
+        ariaRefresh: "Ricarica pulita",
+        ariaClear: "Cancella dati di navigazione",
+        ariaIncognito: "Apri finestra in incognito",
+        ariaIncognitoEdge: "Apri finestra InPrivate",
+        ariaBookmarks: "Apri preferiti",
+        ariaSettings: "Apri impostazioni",
         // Alert banner
-        privateBanner:      "⚠ Anchors non è consentito in modalità Incognito — clicca per abilitarlo",
-        privateBannerEdge:  "⚠ Anchors non è consentito in modalità InPrivate — clicca per abilitarlo",
+        privateBanner: "⚠ Anchors non è consentito in modalità Incognito — clicca per abilitarlo",
+        privateBannerEdge: "⚠ Anchors non è consentito in modalità InPrivate — clicca per abilitarlo",
         // Footer
         footer: "<a href='https://eleora-dev.github.io/anchors/privacy.html' target='_blank' rel='noopener noreferrer' title='Informativa sulla privacy'>Privacy</a><a href='https://github.com/eleora-dev/anchors/blob/main/LICENSE' target='_blank' rel='noopener noreferrer' title='Licenza MIT'>Licenza</a><a href='https://github.com/eleora-dev/anchors/issues' target='_blank' rel='noopener noreferrer' title='Segnala un problema su GitHub'>Segnala problema</a>",
         // Misc
-        by:                 "di",
-        folder:             "Cartella",       // fallback for unnamed folders
+        by: "di",
+        folder: "Cartella", // fallback for unnamed folders
         // Context menu
-        ctxOpen:            "Apri",
-        ctxNewTab:          "Apri in un'altra scheda",
-        ctxNewTabHint:      "Ctrl+Clic",      // shortcut shown on the right
-        ctxNewWindow:       "Apri in una nuova finestra",
-        ctxIncognito:       "Apri in una finestra privata",
-        ctxIncognitoEdge:   "Apri in una finestra InPrivate",
-        ctxCopyUrl:         "Copia URL",
+        ctxOpen: "Apri",
+        ctxNewTab: "Apri in un'altra scheda",
+        ctxNewTabHint: "Ctrl+Clic", // shortcut shown on the right
+        ctxNewWindow: "Apri in una nuova finestra",
+        ctxIncognito: "Apri in una finestra privata",
+        ctxIncognitoEdge: "Apri in una finestra InPrivate",
+        ctxCopyUrl: "Copia URL",
     }
 };
 
@@ -141,10 +141,10 @@ const T = i18n[lang];
 
 // Patch Edge-specific terminology into T so no other code needs conditionals
 if (BROWSER === "edge") {
-    T.incognito    = T.incognitoEdge;
+    T.incognito = T.incognitoEdge;
     T.ariaIncognito = T.ariaIncognitoEdge;
     T.privateBanner = T.privateBannerEdge;
-    T.ctxIncognito  = T.ctxIncognitoEdge;
+    T.ctxIncognito = T.ctxIncognitoEdge;
 }
 
 
@@ -161,17 +161,17 @@ const FEEDBACK_COLOR = "#1565d8";
 
 /* ── DOM references ───────────────────────────────────────────────────────── */
 
-const subtitleEl      = document.getElementById("subtitle");
-const list            = document.getElementById("list");
-const pathEl          = document.getElementById("path");
-const rootDotLink     = document.getElementById("root-dot-link");
-const copyBtn         = document.getElementById("copy-url");
+const subtitleEl = document.getElementById("subtitle");
+const list = document.getElementById("list");
+const pathEl = document.getElementById("path");
+const rootDotLink = document.getElementById("root-dot-link");
+const copyBtn = document.getElementById("copy-url");
 const cleanRefreshBtn = document.getElementById("clean-refresh");
-const clearBtn        = document.getElementById("clear-cache");
-const incognitoBtn    = document.getElementById("incognito");
-const bookmarksBtn    = document.getElementById("bookmarks");
-const settingsBtn     = document.getElementById("settings");
-const footerEl        = document.getElementById("footer");
+const clearBtn = document.getElementById("clear-cache");
+const incognitoBtn = document.getElementById("incognito");
+const bookmarksBtn = document.getElementById("bookmarks");
+const settingsBtn = document.getElementById("settings");
+const footerEl = document.getElementById("footer");
 
 let isPrivateWindow = false;
 
@@ -194,11 +194,11 @@ api.windows.getCurrent((win) => {
 
 /* ── State ────────────────────────────────────────────────────────────────── */
 
-const manifest        = api.runtime.getManifest();
-const expandedFolders = new Set();   // IDs of currently open folders
-const parentMap       = new Map();   // childId → parentId, used to detect folder ancestry
+const manifest = api.runtime.getManifest();
+const expandedFolders = new Set(); // IDs of currently open folders
+const parentMap = new Map(); // childId → parentId, used to detect folder ancestry
 
-let selectedIndex     = -1;   // index of the keyboard-selected item
+let selectedIndex = -1; // index of the keyboard-selected item
 
 
 /* ── Toolbar icon (dark / light) ──────────────────────────────────────────── */
@@ -209,9 +209,9 @@ let selectedIndex     = -1;   // index of the keyboard-selected item
 const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 api.action.setIcon({
     path: {
-        "16":  isDark ? "assets/icon-16-dark.png"  : "assets/icon-16.png",
-        "32":  isDark ? "assets/icon-32-dark.png"  : "assets/icon-32.png",
-        "48":  isDark ? "assets/icon-48-dark.png"  : "assets/icon-48.png",
+        "16": isDark ? "assets/icon-16-dark.png" : "assets/icon-16.png",
+        "32": isDark ? "assets/icon-32-dark.png" : "assets/icon-32.png",
+        "48": isDark ? "assets/icon-48-dark.png" : "assets/icon-48.png",
         "128": isDark ? "assets/icon-128-dark.png" : "assets/icon-128.png"
     }
 }, () => {
@@ -223,13 +223,13 @@ api.action.setIcon({
 
 /* ── Apply translations to static UI ─────────────────────────────────────── */
 
-rootDotLink.title     = T.logoLink;
-copyBtn.title         = T.copyUrl;
+rootDotLink.title = T.logoLink;
+copyBtn.title = T.copyUrl;
 cleanRefreshBtn.title = T.cleanRefresh;
-clearBtn.title        = T.clearCache;
-incognitoBtn.title    = T.incognito;
-bookmarksBtn.title    = T.bookmarks;
-settingsBtn.title     = T.settings;
+clearBtn.title = T.clearCache;
+incognitoBtn.title = T.incognito;
+bookmarksBtn.title = T.bookmarks;
+settingsBtn.title = T.settings;
 
 rootDotLink.setAttribute("aria-label", T.logoLink);
 copyBtn.setAttribute("aria-label", T.ariaCopy);
@@ -262,7 +262,7 @@ function cleanUrl(rawUrl) {
     try {
         parsed = new URL(rawUrl);
     } catch {
-        return rawUrl;  // unparseable URL — return as-is
+        return rawUrl; // unparseable URL — return as-is
     }
 
     for (const key of [...parsed.searchParams.keys()]) {
@@ -290,7 +290,7 @@ copyBtn.onclick = () => {
 
         navigator.clipboard.writeText(cleanUrl(tab.url))
         .then(() => {
-            copyBtn.style.color = FEEDBACK_COLOR;  // visual feedback
+            copyBtn.style.color = FEEDBACK_COLOR; // visual feedback
             setTimeout(() => window.close(), 500);
         })
         .catch((err) => {
@@ -331,7 +331,7 @@ cleanRefreshBtn.onclick = () => {
                     return;
                 }
                 api.tabs.reload(tab.id, { bypassCache: true }, () => {
-                    cleanRefreshBtn.style.color = FEEDBACK_COLOR;  // visual feedback
+                    cleanRefreshBtn.style.color = FEEDBACK_COLOR; // visual feedback
                     setTimeout(() => window.close(), 500);
                 });
             }
@@ -347,13 +347,13 @@ clearBtn.onclick = () => {
     api.browsingData.remove(
         { since: 0 },
         {
-            cache:          true,
-            cacheStorage:   true,
-            downloads:      true,
-            formData:       true,
-            history:        true,
-            indexedDB:      true,
-            localStorage:   true,
+            cache: true,
+            cacheStorage: true,
+            downloads: true,
+            formData: true,
+            history: true,
+            indexedDB: true,
+            localStorage: true,
             serviceWorkers: true
         },
         () => {
@@ -361,7 +361,7 @@ clearBtn.onclick = () => {
                 console.error(api.runtime.lastError.message);
                 return;
             }
-            clearBtn.style.color = FEEDBACK_COLOR;  // visual feedback
+            clearBtn.style.color = FEEDBACK_COLOR; // visual feedback
             setTimeout(() => window.close(), 500);
         }
     );
@@ -431,7 +431,7 @@ if (typeof api.extension?.isAllowedIncognitoAccess === "function") {
 
 /* ── Context menu ─────────────────────────────────────────────────────────── */
 
-let activeCtxMenu = null;  // reference to the currently visible menu
+let activeCtxMenu = null; // reference to the currently visible menu
 
 // Remove the context menu from the DOM
 function closeContextMenu() {
@@ -494,12 +494,12 @@ function showContextMenu(e, url) {
 
     // Menu entries — null renders as a horizontal separator
     const entries = [
-        { label: T.ctxOpen,      action: "open"      },
-        { label: T.ctxNewTab,    action: "tab",       hint: T.ctxNewTabHint },
-        { label: T.ctxNewWindow, action: "window"     },
-        { label: T.ctxIncognito, action: "incognito"  },
+        { label: T.ctxOpen, action: "open" },
+        { label: T.ctxNewTab, action: "tab", hint: T.ctxNewTabHint },
+        { label: T.ctxNewWindow, action: "window" },
+        { label: T.ctxIncognito, action: "incognito" },
         null,
-        { label: T.ctxCopyUrl,   action: "copy"       },
+        { label: T.ctxCopyUrl, action: "copy" },
     ];
 
     for (const entry of entries) {
@@ -528,7 +528,7 @@ function showContextMenu(e, url) {
         }
 
         item.addEventListener("mousedown", (ev) => {
-            ev.stopPropagation();  // prevent immediate menu close
+            ev.stopPropagation(); // prevent immediate menu close
             handleCtxAction(entry.action, url);
             closeContextMenu();
         });
@@ -567,11 +567,11 @@ function showContextMenu(e, url) {
     let x = e.clientX;
     let y = e.clientY;
 
-    if (x + menuW > window.innerWidth)  x = window.innerWidth  - menuW - 4;
+    if (x + menuW > window.innerWidth) x = window.innerWidth - menuW - 4;
     if (y + menuH > window.innerHeight) y = window.innerHeight - menuH - 4;
 
     menu.style.left = `${x}px`;
-    menu.style.top  = `${y}px`;
+    menu.style.top = `${y}px`;
 
     const firstItem = menu.querySelector(".ctx-item");
     if (firstItem) firstItem.focus();
@@ -670,7 +670,7 @@ async function insertFolderChildrenIntoDOM(folderEl, folderId, level) {
         return;
     }
 
-    let ref = folderEl;  // insertion reference: each new element goes after this one
+    let ref = folderEl; // insertion reference: each new element goes after this one
 
     for (const node of nodes) {
         parentMap.set(node.id, folderId);
@@ -682,7 +682,7 @@ async function insertFolderChildrenIntoDOM(folderEl, folderId, level) {
         // Tag the element so we can find and remove it later
         el.dataset.parentFolder = folderId;
         ref.insertAdjacentElement("afterend", el);
-        void el.offsetHeight;  // force reflow so the browser registers the element before adding the animation class
+        void el.offsetHeight; // force reflow so the browser registers the element before adding the animation class
         el.classList.add("item--animate");
         ref = el;
     }
@@ -723,7 +723,7 @@ function createBookmarkItem(node, level) {
     div.className = "item bookmark";
     div.dataset.type = "bookmark";
     div.dataset.url = node.url;
-    div.style.paddingLeft = `${10 + level * 18}px`;  // indent proportional to depth
+    div.style.paddingLeft = `${10 + level * 18}px`; // indent proportional to depth
     div.setAttribute("role", "button");
     div.setAttribute("aria-label", node.title || node.url);
     div.setAttribute("tabindex", "0");
@@ -735,7 +735,7 @@ function createBookmarkItem(node, level) {
 
     const span = document.createElement("span");
     span.className = "title";
-    span.textContent = node.title || node.url;  // fall back to URL if title is empty
+    span.textContent = node.title || node.url; // fall back to URL if title is empty
 
     div.appendChild(img);
     div.appendChild(span);
@@ -801,7 +801,7 @@ function createFolderItem(node, level) {
 
     const span = document.createElement("span");
     span.className = "title";
-    span.textContent = node.title || T.folder;  // localized fallback for unnamed folders
+    span.textContent = node.title || T.folder; // localized fallback for unnamed folders
 
     div.appendChild(arrow);
     div.appendChild(folderIcon);
@@ -856,7 +856,7 @@ async function renderFolder(folderId, container, level = 0) {
     }
 
     for (const node of nodes) {
-        parentMap.set(node.id, folderId);  // record parentage for ancestry detection
+        parentMap.set(node.id, folderId); // record parentage for ancestry detection
 
         const el = node.url
         ? createBookmarkItem(node, level)
@@ -892,7 +892,7 @@ document.addEventListener("keydown", (e) => {
         return;
     }
 
-    const items   = getItems();
+    const items = getItems();
     const current = items[selectedIndex];
 
     if (!items.length) return;
