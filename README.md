@@ -10,7 +10,9 @@ A lightweight extension for Chromium-based browsers, designed for fast bookmark 
 
 ## Screenshot
 
-![Main window](assets/screenshot.png)
+| Light | Dark |
+|---|---|
+| ![Light mode](assets/screenshot-light.png) | ![Dark mode](assets/screenshot-dark.png) |
 
 ---
 
