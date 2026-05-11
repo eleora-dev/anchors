@@ -17,7 +17,7 @@
     --nav-border: #e8e8e8;
 
     /* Accent (hover / selected) */
-    --accent: #ffa726;
+    --accent: #fe9306;
     --accent-text: #ffffff;
     --accent-shadow: rgba(0, 0, 0, 0.25);
 
@@ -30,7 +30,7 @@
     --text-alt: inherit;
 
     /* Footer */
-    --footer-bg: #1565d8;
+    --footer-bg: #0161dc;
     --footer-text: #ffffff;
     --footer-link-hover-bg: rgba(255, 255, 255, 0.15);
     --footer-divider: rgba(255, 255, 255, 0.35);
