@@ -655,6 +655,7 @@ function createBookmarkItem(node, level) {
     div.setAttribute("role", "button");
     div.setAttribute("aria-label", node.title || node.url);
     div.setAttribute("tabindex", "0");
+    div.title = node.url
 
     const img = document.createElement("img");
     img.className = "icon";
@@ -852,6 +853,7 @@ function createHistoryItem(item) {
     div.setAttribute("role", "button");
     div.setAttribute("aria-label", item.title || item.url);
     div.setAttribute("tabindex", "0");
+    div.title = cleanUrl(item.url);
 
     const img = document.createElement("img");
     img.className = "icon";
