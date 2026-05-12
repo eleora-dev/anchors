@@ -84,7 +84,7 @@
 body {
     margin: 0;
     font-family: system-ui, sans-serif;
-    width: 380px;
+    width: 410px;
     background: var(--bg);
     color: var(--text);
     height: 100%;
@@ -122,7 +122,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
     padding: 8px 10px;
     background: var(--nav-bg);
     margin-bottom: 2px;
@@ -131,8 +131,8 @@ body {
 
 #nav-left {
     display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
     min-width: 0;
 }
 
@@ -146,32 +146,41 @@ body {
 #title-block {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     min-width: 0;
 }
 
 #root-dot {
-    width: 26px;
-    height: 26px;
+    width: var(--brand-icon-size);
+    height: var(--brand-icon-size);
+    display: block;
     object-fit: contain;
-    flex: 0 0 auto;
+    transform: translateY(var(--brand-icon-nudge-y));
 }
 
 #root-dot-link {
+    --brand-icon-size: 38px;
+    --brand-icon-nudge-y: -1px;
+    width: calc(var(--brand-icon-size) + 6px);
+    height: calc(var(--brand-icon-size) + 6px);
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 6px;
-    padding: 4px;
-    transition: background 150ms ease;
+    flex: 0 0 auto;
+    border-radius: 10px;
+    padding: 0;
+    line-height: 0;
+    transition: background 150ms ease, transform 150ms ease;
 }
 
 #root-dot-link:hover,
 #root-dot-link:focus-visible {
     background: var(--btn-hover-bg);
+    transform: scale(1.04);
 }
 
 #path {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     white-space: nowrap;
     overflow: hidden;
@@ -200,8 +209,8 @@ body {
 /* ── Icon buttons (navbar) ────────────────────────────────────────────────── */
 
 .icon-button {
-    width: 26px;
-    height: 26px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,8 +235,8 @@ body {
 }
 
 .icon-button svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
