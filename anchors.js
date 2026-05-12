@@ -57,7 +57,6 @@ const INTERNAL_URLS = {
 };
 
 
-
 /* ── Constants ────────────────────────────────────────────────────────────── */
 
 // ID of the Bookmarks Bar folder (child "1" of Chrome's internal root "0").
@@ -67,6 +66,12 @@ const ROOT_FOLDER_ID = "1";
 // Visual feedback color applied to navbar buttons after a successful action.
 // Matches --footer-bg; defined here as a JS constant to stay in sync with CSS.
 const FEEDBACK_COLOR = "#1565d8";
+
+// How many days back the history tab looks.
+const HISTORY_DAYS = 7;
+
+// Max history entries to fetch (keeps the list light).
+const HISTORY_MAX_RESULTS = 150;
 
 
 /* ── DOM references ───────────────────────────────────────────────────────── */
@@ -82,6 +87,12 @@ const incognitoBtn = document.getElementById("incognito");
 const bookmarksBtn = document.getElementById("bookmarks");
 const settingsBtn = document.getElementById("settings");
 const footerEl = document.getElementById("footer");
+
+// Tab bar
+const tabBookmarksBtn = document.getElementById("tab-bookmarks");
+const tabHistoryBtn = document.getElementById("tab-history");
+const tabBookmarksLabel = document.getElementById("tab-bookmarks-label");
+const tabHistoryLabel = document.getElementById("tab-history-label");
 
 let isPrivateWindow = false;
 
@@ -109,6 +120,7 @@ const expandedFolders = new Set(); // IDs of currently open folders
 const parentMap = new Map(); // childId → parentId, used to detect folder ancestry
 
 let selectedIndex = -1; // index of the keyboard-selected item
+let activeTab = "bookmarks"; // "bookmarks" | "history"
 
 
 /* ── Toolbar icon (dark / light) ──────────────────────────────────────────── */
@@ -154,6 +166,12 @@ if (footerEl) footerEl.innerHTML = T.footer;
 if (subtitleEl && manifest.author) {
     subtitleEl.textContent = `${T.by} ${manifest.author}`;
 }
+
+// Tab bar labels
+if (tabBookmarksLabel) tabBookmarksLabel.textContent = T.tabBookmarks;
+if (tabHistoryLabel) tabHistoryLabel.textContent = T.tabHistory;
+if (tabBookmarksBtn) tabBookmarksBtn.setAttribute("aria-label", T.tabBookmarks);
+if (tabHistoryBtn) tabHistoryBtn.setAttribute("aria-label", T.tabHistory);
 
 
 /* ── URL cleaning ─────────────────────────────────────────────────────────── */
@@ -751,7 +769,7 @@ function createFolderItem(node, level) {
 }
 
 
-/* ── List rendering ───────────────────────────────────────────────────────── */
+/* ── List rendering (bookmarks) ───────────────────────────────────────────── */
 
 // Populate the container with the children of a folder,
 // recursively rendering any expanded subfolders.
@@ -785,12 +803,187 @@ async function renderFolder(folderId, container, level = 0) {
     }
 }
 
-// Full render — called once at startup only
+// Full render — called when switching to the bookmarks tab
 async function render() {
     list.innerHTML = "";
     pathEl.textContent = manifest.name;
     await renderFolder(ROOT_FOLDER_ID, list);
 }
+
+
+/* ── History rendering ────────────────────────────────────────────────────── */
+
+/**
+ * Return a locale-aware day label for a given timestamp.
+ * Produces "Today", "Yesterday", or a formatted date string.
+ *
+ * @param {Date} date
+ * @returns {string}
+ */
+function historyDayLabel(date) {
+    const now = new Date();
+    const todayStr = now.toDateString();
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+
+    if (date.toDateString() === todayStr) return T.historyToday;
+    if (date.toDateString() === yesterday.toDateString()) return T.historyYesterday;
+
+    return date.toLocaleDateString(navigator.language, {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+    });
+}
+
+/**
+ * Create a DOM element for a history entry.
+ * Reuses the same .item / .icon / .title structure as bookmarks so the
+ * existing keyboard navigation and accent-hover styles work automatically.
+ *
+ * @param {chrome.history.HistoryItem} item
+ * @returns {HTMLElement}
+ */
+function createHistoryItem(item) {
+    const div = document.createElement("div");
+    div.className = "item bookmark";
+    div.dataset.type = "bookmark"; // reuse bookmark semantics for keyboard nav
+    div.dataset.url = item.url;
+    div.setAttribute("role", "button");
+    div.setAttribute("aria-label", item.title || item.url);
+    div.setAttribute("tabindex", "0");
+
+    const img = document.createElement("img");
+    img.className = "icon";
+    img.alt = "";
+    img.src = getFavicon(item.url);
+
+    const span = document.createElement("span");
+    span.className = "title";
+    span.textContent = item.title || item.url;
+
+    const time = document.createElement("span");
+    time.className = "history-time";
+    time.textContent = new Date(item.lastVisitTime).toLocaleTimeString(navigator.language, {
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+
+    div.appendChild(img);
+    div.appendChild(span);
+    div.appendChild(time);
+
+    // Left-click: open in current tab; Ctrl+Click: open in a new tab
+    div.addEventListener("click", (e) => {
+        if (e.ctrlKey) {
+            api.tabs.create({ url: item.url, active: true }, () => window.close());
+            return;
+        }
+        api.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+            const tab = tabs[0];
+            if (!tab?.id) return;
+            api.tabs.update(tab.id, { url: item.url, active: true }, () => {
+                api.windows.update(tab.windowId, { focused: true }, () => window.close());
+            });
+        });
+    });
+
+    div.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            div.click();
+        }
+    });
+
+    // Right-click: reuse the same context menu as bookmarks.
+    // cleanUrl strips tracking parameters before they reach the copy action.
+    div.addEventListener("contextmenu", (e) => showContextMenu(e, cleanUrl(item.url)));
+
+    return div;
+}
+
+/**
+ * Fetch browser history and render it grouped by calendar day.
+ * Uses chrome.history.search — requires the "history" permission.
+ */
+function renderHistory() {
+    list.innerHTML = "";
+
+    const startTime = Date.now() - HISTORY_DAYS * 24 * 60 * 60 * 1000;
+
+    api.history.search({ text: "", maxResults: HISTORY_MAX_RESULTS, startTime }, (items) => {
+        if (api.runtime.lastError) {
+            console.error("History fetch failed:", api.runtime.lastError.message);
+            return; // leave the list empty rather than showing a misleading "no history" message
+        }
+
+        if (!items || items.length === 0) {
+            const empty = document.createElement("div");
+            empty.className = "history-empty";
+            empty.textContent = T.historyEmpty;
+            list.appendChild(empty);
+            return;
+        }
+
+        // Group entries by calendar day.
+        // Key: "YYYY-M-D" string (locale-independent, for deduplication).
+        const groups = new Map();
+        for (const item of items) {
+            const d = new Date(item.lastVisitTime);
+            const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+            if (!groups.has(key)) {
+                groups.set(key, { label: historyDayLabel(d), items: [] });
+            }
+            groups.get(key).items.push(item);
+        }
+
+        for (const { label, items: dayItems } of groups.values()) {
+            // Day separator header
+            const header = document.createElement("div");
+            header.className = "history-day-header";
+            header.textContent = label;
+            list.appendChild(header);
+
+            for (const item of dayItems) {
+                const el = createHistoryItem(item);
+                el.classList.add("item--animate");
+                list.appendChild(el);
+            }
+        }
+    });
+}
+
+
+/* ── Tab switching ────────────────────────────────────────────────────────── */
+
+/**
+ * Switch the visible panel between "bookmarks" and "history".
+ * Resets keyboard selection and updates ARIA states on the tab buttons.
+ *
+ * @param {"bookmarks"|"history"} tab
+ */
+function switchTab(tab) {
+    activeTab = tab;
+    selectedIndex = -1;
+    closeContextMenu();
+
+    const isBookmarks = tab === "bookmarks";
+
+    tabBookmarksBtn.classList.toggle("active", isBookmarks);
+    tabBookmarksBtn.setAttribute("aria-selected", String(isBookmarks));
+
+    tabHistoryBtn.classList.toggle("active", !isBookmarks);
+    tabHistoryBtn.setAttribute("aria-selected", String(!isBookmarks));
+
+    if (isBookmarks) {
+        render();
+    } else {
+        renderHistory();
+    }
+}
+
+tabBookmarksBtn.addEventListener("click", () => switchTab("bookmarks"));
+tabHistoryBtn.addEventListener("click", () => switchTab("history"));
 
 
 /* ── Keyboard navigation ──────────────────────────────────────────────────── */
@@ -824,13 +1017,13 @@ document.addEventListener("keydown", (e) => {
         current?.click();
     }
 
-    // ArrowRight: open the selected folder
+    // ArrowRight: open the selected folder (bookmarks tab only)
     if (e.key === "ArrowRight" && current?.dataset.type === "folder" && !current.classList.contains("open")) {
         e.preventDefault();
         current.click();
     }
 
-    // ArrowLeft: close the selected folder
+    // ArrowLeft: close the selected folder (bookmarks tab only)
     if (e.key === "ArrowLeft" && current?.dataset.type === "folder" && current.classList.contains("open")) {
         e.preventDefault();
         current.click();

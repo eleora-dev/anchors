@@ -49,6 +49,13 @@ const i18n = {
         ctxIncognito: "Open in private window",
         ctxIncognitoEdge: "Open in InPrivate window",
         ctxCopyUrl: "Copy URL",
+        // Tab bar
+        tabBookmarks: "Bookmarks",
+        tabHistory: "History",
+        // History view
+        historyEmpty: "No recent history to show.",
+        historyToday: "Today",
+        historyYesterday: "Yesterday",
     },
     it: {
         // Navbar tooltips
@@ -84,6 +91,13 @@ const i18n = {
         ctxIncognito: "Apri in una finestra privata",
         ctxIncognitoEdge: "Apri in una finestra InPrivate",
         ctxCopyUrl: "Copia URL",
+        // Tab bar
+        tabBookmarks: "Preferiti",
+        tabHistory: "Cronologia",
+        // History view
+        historyEmpty: "Nessuna cronologia recente da mostrare.",
+        historyToday: "Oggi",
+        historyYesterday: "Ieri",
     }
 };
 

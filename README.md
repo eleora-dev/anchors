@@ -19,6 +19,7 @@ A lightweight extension for Chromium-based browsers, designed for fast bookmark 
 ## Features
 
 * **Bookmarks** — browse and navigate your bookmark tree instantly
+* **History** — browse recent browsing history grouped by day, with per-item timestamps
 * **Clean reload** — clear cache for the current site and reload
 * **Clear data** — remove cache, history, downloads, form data and local storage (cookies excluded)
 * **Copy sanitized URL** — copy the current page URL without tracking parameters
@@ -55,6 +56,7 @@ A lightweight extension for Chromium-based browsers, designed for fast bookmark 
 ## How it works
 
 * Bookmarks are read using the browser's native `chrome.bookmarks` API
+* Browsing history is read using the browser's native `chrome.history` API
 * Favicons are retrieved via the browser's internal `_favicon` endpoint
 * URL cleaning removes known tracking parameters (UTM, click IDs, affiliate IDs, etc.)
 * All operations run **locally inside your browser**
@@ -64,6 +66,7 @@ A lightweight extension for Chromium-based browsers, designed for fast bookmark 
 ## Permissions explained
 
 * `bookmarks` → read and display bookmarks in the popup
+* `history` → read and display recent browsing history in the popup
 * `tabs` → access the current tab URL when needed
 * `windows` → open new browser windows, including incognito/private windows
 * `browsingData` → clear cache and selected browsing data
@@ -84,9 +87,9 @@ A lightweight extension for Chromium-based browsers, designed for fast bookmark 
 
 ### Keyboard shortcuts
 
-* `↑ / ↓` → navigate items
+* `↑ / ↓` → navigate items (works in both Bookmarks and History tabs)
 * `Enter` → open the selected item
-* `Ctrl + Click` → open bookmark in a new tab
+* `Ctrl + Click` → open in a new tab (works in both tabs)
 * `Esc` → close the context menu
 
 ---
